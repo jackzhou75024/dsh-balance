@@ -65,7 +65,7 @@ DEEPSEEK_API_KEY: sk-你的key
 
 - 余额查询走 `https://api.deepseek.com/user/balance`，密钥由 DSH 的 credentials 服务按需解析，不写死在插件里。
 - 「今日消费」累计当天余额下降的总额（即当天消费）。每日状态存在 `$DSH_HOME/.balance-day.json`，仅在插件首次运行或跨天时清零；中途充值不会改变已累计的消费。
-- 插件依赖 Node（`node` 在 PATH 中）用于发起 HTTPS 请求（Windows 的 schannel TLS 在沙箱里不可用，所以走 Node 的 OpenSSL 栈）。
+- 余额查询使用 DSH 引擎内置的 Node fetch（OpenSSL 栈），不 spawn 外部进程，也不会弹出命令行窗口。
 
 ## License
 
